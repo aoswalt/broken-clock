@@ -120,13 +120,16 @@ defmodule Clockwork.Window do
   end
 
   defp draw() do
+    now = :os.system_time(:millisecond) / 500
+    offset = :math.sin(now)
+
     :gl.clear(Bitwise.bor(:gl_const.gl_color_buffer_bit(), :gl_const.gl_depth_buffer_bit()))
     :gl.loadIdentity()
     :gl.translatef(-1.5, 0.0, -6.0)
     :gl.begin(:gl_const.gl_triangles())
-    :gl.vertex3f(0.0, 1.0, 0.0)
-    :gl.vertex3f(-1.0, -1.0, 0.0)
-    :gl.vertex3f(1.0, -1.0, 0.0)
+    :gl.vertex3f(0.0, 1.0 + offset, 0.0)
+    :gl.vertex3f(-1.0, -1.0 + offset, 0.0)
+    :gl.vertex3f(1.0, -1.0 + offset, 0.0)
     :gl.end()
     :ok
   end

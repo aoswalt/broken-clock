@@ -7,7 +7,7 @@ defmodule Clockwork.Application do
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Clockwork.Worker.start_link(arg)
-      # {Clockwork.Worker, arg}
+      {Clockwork.WindowServer, nil}
     ]
 
     opts = [strategy: :one_for_one, name: Clockwork.Supervisor]
